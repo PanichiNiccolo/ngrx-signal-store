@@ -15,6 +15,8 @@ export function buildProductListVm(
   function buildProductItems() {
     const word = searchWord.trim().toLowerCase();
 
+    if (!word) return [];
+
     return products
       .filter(product => product.name.toLowerCase().includes(word))
       .map(product => ({
@@ -43,8 +45,10 @@ export function buildCartVm(
     subtotal: subtotal,
     tax: tax,
     total: total,
+    itemsCount: itemsCount,
     isActive: isActive,
     isVisible: cartVisible,
+    canCheckout: isActive,
   };
 
   function buildCartItems(): CartItemVm[] {
