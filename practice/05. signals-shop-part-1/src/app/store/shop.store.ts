@@ -7,7 +7,7 @@ import * as updaters from './shop.updaters';
 export const ShopStore = signalStore(
   {providedIn: 'root'},
   withState(initialShopSlice),
-  withComputed(store => ({
+  withComputed((store) => ({
     productListVm: computed(() => buildProductListVm(
       store.products(),
       store.searchWord(),
@@ -20,7 +20,7 @@ export const ShopStore = signalStore(
       store.cartVisible()
     ))
   })),
-  withMethods(store => ({
+  withMethods((store) => ({
     setSearchWord: (searchWord: string) => patchState(store, updaters.setSearchWord(searchWord)),
     addToCart: (productId: string) => patchState(store, updaters.addToCart(productId)),
     viewCart: () => patchState(store, updaters.viewCart()),
@@ -29,7 +29,7 @@ export const ShopStore = signalStore(
     decrementQuantity: (productId: string) => patchState(store, updaters.decrementQuantity(productId)),
     checkoutCart: () => patchState(store, updaters.checkoutCart()),
   })),
-  withHooks(store => ({
+  withHooks((store) => ({
     onInit() {
       const persisted: Signal<PersistedShopSlice> = computed(() => ({
         cartQuantities: store.cartQuantities(),
